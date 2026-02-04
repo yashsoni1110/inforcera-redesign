@@ -18,7 +18,7 @@ const Stats = () => {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10 relative z-10">
             {stats.map((stat, index) => (
-              <StatItem key={index} stat={stat} index={index} />
+              <StatItem key={index} stat={stat} />
             ))}
           </div>
         </div>
@@ -27,7 +27,7 @@ const Stats = () => {
   );
 };
 
-const StatItem = ({ stat, index }: { stat: any, index: number }) => {
+const StatItem = ({ stat }: { stat: any }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
     
