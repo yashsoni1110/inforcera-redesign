@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import type { MouseEvent } from "react";
-import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import {
   Car,
   ShoppingCart,
