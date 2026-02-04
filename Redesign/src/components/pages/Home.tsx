@@ -2,6 +2,7 @@ import Nav from "../layout/Nav";
 import Hero from "../other/Hero";
 import OurServices from "../other/OurServices";
 import Techno from "../other/Techno";
+import Industry from "../other/Industry";
 
 
 function Home() {
@@ -15,6 +16,7 @@ function Home() {
             {/* Technology Stack */}
             <Techno />
             {/* Features Grid */}
+            <Industry />
             <section className="py-20 px-6 bg-accent/30">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
