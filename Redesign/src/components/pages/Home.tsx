@@ -17,9 +17,6 @@ function Home() {
             <Nav />
             {/* Hero Section */}
             <Hero />
-            
-            {/* Stats Counter */}
-            <Stats />
 
             {/* Our services */}
             <OurServices />
@@ -39,6 +36,9 @@ function Home() {
 
             {/* Contact Form */}
             <Contact />
+
+            {/* Stats Counter */}
+            <Stats />
             
             {/* Footer */}
             <Footer />
