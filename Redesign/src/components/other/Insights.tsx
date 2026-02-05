@@ -139,9 +139,9 @@ const Insights = () => {
                                     <input
                                         type="text"
                                         placeholder="Email address"
-                                        className="bg-white/10 border border-white/20 rounded-lg p-2 md:px-4 text-sm flex-1 placeholder:text-white/50 focus:outline-none"
+                                        className="bg-white/10 border border-white/20 rounded-lg p-2 md:px-4 text-sm flex-1 placeholder:text-muted-foreground focus:outline-none"
                                     />
-                                    <button className="bg-white text-primary p-2 rounded-lg hover:bg-black hover:text-white transition-colors">
+                                    <button className="bg-black text-muted-foreground p-2 rounded-lg hover:bg-black hover:text-primary transition-colors">
                                         <ArrowUpRight className="w-5 h-5" />
                                     </button>
                                 </div>
