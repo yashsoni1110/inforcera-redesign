@@ -62,7 +62,7 @@ const Portfolio = () => {
     const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
     // Horizontal move only applied on Desktop
     // Adjusted range to ensure items scroll fully into view
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-72%"]);
 
     return (
         <section
@@ -156,7 +156,7 @@ const ProjectCard = ({ project, index, isMobile }: ProjectCardProps) => {
             !isMobile ? "w-[45vw] h-[60vh]" : "w-full h-[500px]"
         )}>
             {/* Index Background Label */}
-            <div className="absolute -top-10 -left-6 text-[8rem] md:text-[10rem] font-bold text-foreground/5 pointer-events-none italic select-none z-0">
+            <div className="absolute -top-10 -left-6 text-[8rem] md:text-[10rem] font-bold text-foreground/10 pointer-events-none italic select-none z-0">
                 0{index + 1}
             </div>
 

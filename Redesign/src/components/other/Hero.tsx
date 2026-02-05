@@ -75,7 +75,7 @@ const Hero = () => {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1.5 }}
                     className={cn(
-                        "absolute inset-0 bg-gradient-to-br blur-3xl opacity-40 transition-all duration-1000",
+                        "absolute inset-0 bg-gradient-to-br blur-3xl opacity-40",
                         activeData.colors.bg
                     )}
                 />
@@ -170,7 +170,7 @@ const Hero = () => {
                     {/* Abstract Shapes */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-full blur-[100px] animate-pulse-slow" />
                     
-                    <div className="relative w-full h-full max-h-[800px] max-w-[400px] perspective-1000 -translate-y-12">
+                    <div className="relative w-full h-full max-h-[800px] max-w-[600px] perspective-1000">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={active}

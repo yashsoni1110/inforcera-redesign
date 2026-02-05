@@ -40,7 +40,7 @@ const Nav = () => {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
             ? "bg-background/95 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-border/50"
             : "bg-background/60 backdrop-blur-sm border-b border-transparent"
@@ -58,7 +58,7 @@ const Nav = () => {
                   <NavigationMenuItem>
                     <NavigationMenuLink
                       href="/"
-                      className={cn(navigationMenuTriggerStyle(), "font-medium")}
+                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium")}
                     >
                       Home
                     </NavigationMenuLink>
@@ -117,7 +117,7 @@ const Nav = () => {
                     <NavigationMenuItem key={link.name}>
                       <NavigationMenuLink
                         href={link.href}
-                        className={cn(navigationMenuTriggerStyle(), "font-medium")}
+                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium")}
                       >
                         {link.name}
                       </NavigationMenuLink>
