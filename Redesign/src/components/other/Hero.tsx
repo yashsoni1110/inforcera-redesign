@@ -1,162 +1,173 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Play, Sparkles, ShieldCheck, Headphones, Users } from "lucide-react";
+import { Play, Sparkles, ShieldCheck, Headphones, Users, ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { cn } from "../../lib/utils";
 
-// Carousel Data
-const HERO_SLIDES = [
+const HERO_DATA = [
     {
+        id: "01",
+        title: "Innovative IT Solutions",
+        highlight: "Modern Enterprises",
+        description: "Deploying scalable architectures that turn complex challenges into competitive advantages.",
         image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
-        title: "Innovative IT Solutions for Modern Enterprises",
-        subtitle: "Leading IT Services Provider",
-        description: "We deliver innovative technology solutions to help your business thrive in a digital world.",
+        color: "from-blue-600 to-cyan-500"
     },
     {
+        id: "02",
+        title: "Seamless Global",
+        highlight: "Connectivity",
+        description: "Empowering distributed teams with enterprise-grade software and sub-millisecond latency.",
         image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-        title: "Seamless Connections for Global Growth",
-        subtitle: "Future-Ready Technology",
-        description: "Empowering businesses with scalable architectures and enterprise-grade software products.",
+        color: "from-purple-600 to-pink-500"
     },
     {
+        id: "03",
+        title: "Secure & Scalable",
+        highlight: "Architectures",
+        description: "Bulletproof cybersecurity meets elastic cloud infrastructure for the modern digital era.",
         image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-        title: "Secure & Reliable Scalable Architectures",
-        subtitle: "Elite Cybersecurity",
-        description: "Protecting your digital assets with cutting-edge security and round-the-clock monitoring.",
+        color: "from-emerald-600 to-teal-500"
     },
 ];
 
 const FEATURES = [
-    { icon: <Sparkles className="w-5 h-5" />, title: "Innovation", desc: "Creative Solutions, Unified Systems" },
-    { icon: <ShieldCheck className="w-5 h-5" />, title: "Secure & Reliable", desc: "Enterprise-grade security" },
-    { icon: <Headphones className="w-5 h-5" />, title: "24/7 Support", desc: "Round-the-clock assistance" },
-    { icon: <Users className="w-5 h-5" />, title: "Expert Team", desc: "Industry professionals" },
+    { icon: <Sparkles />, title: "Innovation", desc: "Unified Systems" },
+    { icon: <ShieldCheck />, title: "Secure", desc: "Enterprise Grade" },
+    { icon: <Headphones />, title: "24/7", desc: "Expert Support" },
+    { icon: <Users />, title: "Teams", desc: "Top 1% Talent" },
 ];
 
 const Hero = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [active, setActive] = useState(0);
 
-    // Auto-slide logic
+    // Auto-rotate logic
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-        }, 6000);
+            setActive((prev) => (prev + 1) % HERO_DATA.length);
+        }, 8000);
         return () => clearInterval(timer);
     }, []);
 
     return (
-        <section className="relative min-h-[90vh] lg:min-h-screen w-full overflow-hidden flex flex-col justify-center">
-            {/* --- BACKGROUND CAROUSEL --- */}
-            <div className="absolute inset-0 z-0">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={currentSlide}
-                        initial={{ opacity: 0, scale: 1.1 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.05 }}
-                        transition={{ duration: 1.5 }}
-                        className="absolute inset-0"
-                    >
-                        <div className="absolute inset-0 bg-black/60 z-10" /> {/* Overlay */}
-                        <img
-                            src={HERO_SLIDES[currentSlide].image}
-                            alt="Hero Background"
-                            className="w-full h-full object-cover"
-                        />
-                    </motion.div>
-                </AnimatePresence>
-            </div>
+        <section className="relative min-h-[90vh] lg:min-h-screen w-full bg-background overflow-hidden pb-12 flex items-center">
+            {/* Ambient Background Glow */}
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
-            {/* --- CONTENT AREA --- */}
-            <div className="container mx-auto px-4 sm:px-6 relative z-20 pt-20">
-                <div className="max-w-4xl">
-                    {/* Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-md text-primary-foreground text-sm font-medium mb-6"
-                    >
-                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                        {HERO_SLIDES[currentSlide].subtitle}
-                    </motion.div>
+            <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 items-center relative z-10">
 
-                    {/* Main Title */}
-                    <motion.h1
-                        key={`title-${currentSlide}`}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
-                    >
-                        {HERO_SLIDES[currentSlide].title}
-                    </motion.h1>
-
-                    {/* Description */}
-                    <motion.p
-                        key={`desc-${currentSlide}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.9 }}
-                        transition={{ delay: 0.4 }}
-                        className="text-lg md:text-xl text-gray-200 max-w-2xl mb-10 leading-relaxed"
-                    >
-                        {HERO_SLIDES[currentSlide].description}
-                    </motion.p>
-
-                    {/* Buttons */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
-                        className="flex flex-wrap gap-4 items-center"
-                    >
-                        <Button size="lg" className="rounded-full px-8 h-14 text-base font-bold shadow-xl hover:scale-105 transition-all">
-                            Get Started <ArrowRight className="ml-2 w-5 h-5" />
-                        </Button>
-                        <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base font-bold backdrop-blur-sm bg-white/5 border-white/20 text-white hover:bg-white/10">
-                            <Play className="mr-2 w-5 h-5 fill-white" /> Watch Demo
-                        </Button>
-                    </motion.div>
+                {/* --- LEFT: NAVIGATION & INDICATORS --- */}
+                <div className="hidden lg:flex lg:col-span-1 flex-col gap-8">
+                    {HERO_DATA.map((item, idx) => (
+                        <button
+                            key={item.id}
+                            onClick={() => setActive(idx)}
+                            className={cn(
+                                "group flex flex-col items-start transition-all duration-300",
+                                active === idx ? "opacity-100" : "opacity-30 hover:opacity-50"
+                            )}
+                        >
+                            <span className="text-xs font-mono text-primary mb-1">{item.id}</span>
+                            <div className={cn(
+                                "h-[2px] bg-primary transition-all duration-500",
+                                active === idx ? "w-12" : "w-6 group-hover:w-8"
+                            )} />
+                        </button>
+                    ))}
                 </div>
-            </div>
 
-            {/* --- FEATURE CARDS (Bottom Overlay) --- */}
-            <div className="mt-20 lg:absolute lg:bottom-12 lg:left-0 lg:right-0 z-30">
-                <div className="container mx-auto px-4 sm:px-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {FEATURES.map((feature, idx) => (
-                            <motion.div
-                                key={feature.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.8 + idx * 0.1 }}
-                                className="group p-6 rounded-2xl bg-background/20 backdrop-blur-xl border border-white/10 hover:border-primary/50 transition-all duration-300"
-                            >
-                                <div className="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                    {feature.icon}
-                                </div>
-                                <h3 className="text-white font-bold mb-1">{feature.title}</h3>
-                                <p className="text-sm text-gray-400 group-hover:text-gray-200 transition-colors">
-                                    {feature.desc}
-                                </p>
-                            </motion.div>
+                {/* --- CENTER: CONTENT --- */}
+                <div className="lg:col-span-6 flex flex-col pt-8 lg:pt-0">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={active}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-secondary/50 border border-border/50 text-foreground text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                </span>
+                                System Operational
+                            </div>
+
+                            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-foreground leading-[1.1] mb-6">
+                                {HERO_DATA[active].title} <br />
+                                <span className={cn("text-transparent bg-clip-text ", HERO_DATA[active].color)}>
+                                    {HERO_DATA[active].highlight}
+                                </span>
+                            </h1>
+
+                            <p className="text-base sm:text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed">
+                                {HERO_DATA[active].description}
+                            </p>
+
+                            <div className="flex flex-wrap gap-4">
+                                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl px-8 h-12 sm:h-14 text-base group shadow-lg shadow-primary/20">
+                                    Start Project
+                                    <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Button>
+                                <Button variant="ghost" className="text-foreground hover:bg-secondary/80 gap-2 h-12 sm:h-14 px-6 rounded-xl">
+                                    <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center bg-background">
+                                        <Play className="w-3 h-3 fill-foreground ml-0.5" />
+                                    </div>
+                                    View Method
+                                </Button>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
+
+                    {/* Features Grid (Responsive) */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 sm:mt-16 border-t border-border pt-8">
+                        {FEATURES.map((f, i) => (
+                            <div key={i} className="flex flex-col gap-2 p-2 rounded-lg hover:bg-secondary/30 transition-colors">
+                                <div className="text-primary w-5 h-5">{f.icon}</div>
+                                <div className="text-foreground font-semibold text-sm">{f.title}</div>
+                                <div className="text-muted-foreground text-xs">{f.desc}</div>
+                            </div>
                         ))}
                     </div>
                 </div>
-            </div>
 
-            {/* Slide Indicators */}
-            <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 z-40">
-                {HERO_SLIDES.map((_, idx) => (
-                    <button
-                        key={idx}
-                        onClick={() => setCurrentSlide(idx)}
-                        className={cn(
-                            "w-1 h-12 rounded-full transition-all duration-500",
-                            currentSlide === idx ? "bg-primary w-2" : "bg-white/20 hover:bg-white/40"
-                        )}
-                    />
-                ))}
+                {/* --- RIGHT: INTERACTIVE IMAGE WINDOW --- */}
+                <div className="lg:col-span-5 relative group mt-8 lg:mt-0">
+                    <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-transparent blur-2xl opacity-50 rounded-[3rem]" />
+                    <div className="relative aspect-[4/5] md:aspect-square overflow-hidden rounded-[2rem] border border-border shadow-2xl bg-card">
+                        <AnimatePresence mode="wait">
+                            <motion.img
+                                key={active}
+                                src={HERO_DATA[active].image}
+                                initial={{ scale: 1.2, filter: "grayscale(100%)" }}
+                                animate={{ scale: 1, filter: "grayscale(0%)" }}
+                                exit={{ scale: 1.1, opacity: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="w-full h-full object-cover"
+                            />
+                        </AnimatePresence>
+
+                        {/* Floating Micro-Card */}
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="absolute bottom-6 left-6 right-6 p-4 backdrop-blur-xl bg-background/80 border border-border rounded-2xl flex items-center justify-between shadow-lg"
+                        >
+                            <div>
+                                <p className="text-foreground text-sm font-bold">Industry Standard</p>
+                                <p className="text-muted-foreground text-xs">ISO 27001 Certified</p>
+                            </div>
+                            <div className="flex -space-x-2">
+                                {[1, 2, 3].map(i => (
+                                    <div key={i} className="w-8 h-8 rounded-full border-2 border-background bg-muted" />
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+
             </div>
         </section>
     );

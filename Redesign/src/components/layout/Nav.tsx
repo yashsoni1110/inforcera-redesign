@@ -15,26 +15,21 @@ import {
 } from "../ui/navigation-menu";
 import { cn } from "../../lib/utils";
 import { ADDITIONAL_LINKS, Logo, SERVICES_DATA } from "../../lib/NavData";
+import { useTheme } from "../ui/theme-provider";
 
 
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+
   const [searchOpen, setSearchOpen] = useState(false);
+  const { setTheme, theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Theme toggle function
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.classList.toggle("dark");
-  };
 
   const mainNavLinks = [
     { name: "About Us", href: "/about" },
@@ -159,13 +154,11 @@ const Nav = () => {
                 variant="ghost"
                 size="icon"
                 className="rounded-full hover:bg-accent"
-                onClick={toggleTheme}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
-                {theme === "light" ? (
-                  <Moon className="w-4 h-4" />
-                ) : (
-                  <Sun className="w-4 h-4" />
-                )}
+                <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                <span className="sr-only">Toggle theme</span>
               </Button>
 
               {/* User Profile */}
