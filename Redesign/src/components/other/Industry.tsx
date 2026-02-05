@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Car, ShoppingCart, GraduationCap, Landmark,
-  Gamepad2, Stethoscope, Factory, Building2,
-  Store, Truck, ArrowRight, ChevronRight
+  Car, ShoppingCart, Landmark,
+  Stethoscope, Truck, ArrowRight, ChevronRight
 } from "lucide-react";
 import { cn } from "../../lib/utils";
 

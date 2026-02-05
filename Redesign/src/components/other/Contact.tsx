@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send, ArrowRight, Globe } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowRight, Globe, type LucideIcon } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 const Contact = () => {
@@ -124,7 +124,15 @@ const StatusBadge = ({ label, color }: { label: string, color: string }) => (
     </div>
 );
 
-const ContactTile = ({ icon: Icon, label, value, subValue, href }: any) => {
+interface ContactTileProps {
+    icon: LucideIcon;
+    label: string;
+    value: string;
+    subValue?: string;
+    href?: string;
+}
+
+const ContactTile = ({ icon: Icon, label, value, subValue, href }: ContactTileProps) => {
     const Component = href ? 'a' : 'div';
     return (
         <Component
@@ -146,7 +154,13 @@ const ContactTile = ({ icon: Icon, label, value, subValue, href }: any) => {
     );
 };
 
-const InputGroup = ({ label, placeholder, type }: any) => (
+interface InputGroupProps {
+    label: string;
+    placeholder: string;
+    type: string;
+}
+
+const InputGroup = ({ label, placeholder, type }: InputGroupProps) => (
     <div className="relative group/input">
         <label className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2 group-focus-within/input:text-primary transition-colors">
             {label}
@@ -159,7 +173,12 @@ const InputGroup = ({ label, placeholder, type }: any) => (
     </div>
 );
 
-const SelectGroup = ({ label, options }: any) => (
+interface SelectGroupProps {
+    label: string;
+    options: string[];
+}
+
+const SelectGroup = ({ label, options }: SelectGroupProps) => (
     <div className="relative">
         <label className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">
             {label}

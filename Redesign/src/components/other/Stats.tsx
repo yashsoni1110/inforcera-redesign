@@ -1,9 +1,17 @@
 import { animate, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { Users, CheckCircle, Trophy, Globe2 } from "lucide-react";
+import { Users, CheckCircle, Trophy, Globe2, type LucideIcon } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-const STATS = [
+interface Stat {
+  label: string;
+  value: number;
+  suffix: string;
+  icon: LucideIcon;
+  color: string;
+}
+
+const STATS: Stat[] = [
   { label: "Happy Clients", value: 100, suffix: "+", icon: Users, color: "text-blue-500" },
   { label: "Projects Done", value: 250, suffix: "+", icon: CheckCircle, color: "text-emerald-500" },
   { label: "Success Rate", value: 98, suffix: "%", icon: Trophy, color: "text-yellow-500" },
@@ -23,7 +31,7 @@ const Stats = () => {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-border/50">
             {STATS.map((stat, index) => (
-              <StatItem key={index} stat={stat} index={index} />
+              <StatItem key={index} stat={stat} />
             ))}
           </div>
 
@@ -33,7 +41,11 @@ const Stats = () => {
   );
 };
 
-const StatItem = ({ stat, index }: { stat: any, index: number }) => {
+interface StatItemProps {
+  stat: Stat;
+}
+
+const StatItem = ({ stat }: StatItemProps) => {
   const ref = useRef(null);
   // use amount: 0.5 to ensure it's 50% visible before starting
   const isInView = useInView(ref, { once: true, amount: 0.5 });

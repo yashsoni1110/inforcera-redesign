@@ -3,7 +3,7 @@ import {
   Server, ShieldCheck, Feather, Cat,
   Globe, Layers, CheckCircle,
   GitBranch, Box, Code, Coffee,
-  Sparkles, Terminal, Cpu, List
+  Terminal, Cpu, List
 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";

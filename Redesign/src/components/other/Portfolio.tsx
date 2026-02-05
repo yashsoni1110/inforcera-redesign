@@ -34,8 +34,16 @@ const PROJECTS = [
     }
 ];
 
+interface Project {
+    title: string;
+    category: string;
+    desc: string;
+    tech: string[];
+    image: string;
+}
+
 const Portfolio = () => {
-    const sectionRef = useRef(null);
+    const sectionRef = useRef<HTMLElement>(null);
     const [isMobile, setIsMobile] = useState(false);
 
     // Detect screen size to toggle animation
@@ -128,7 +136,13 @@ const Portfolio = () => {
     );
 };
 
-const ProjectCard = ({ project, index, isMobile }) => {
+interface ProjectCardProps {
+    project: Project;
+    index: number;
+    isMobile: boolean;
+}
+
+const ProjectCard = ({ project, index, isMobile }: ProjectCardProps) => {
     return (
         <div className={cn(
             "relative shrink-0 group",
